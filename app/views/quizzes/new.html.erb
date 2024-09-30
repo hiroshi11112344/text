@@ -1,0 +1,20 @@
+<h1>Quizzes</h1>
+<p>Find me in app/views/quizzes/new.html.erb</p>
+
+
+<%= form_tag("/quizzes/create") do %>
+  <p>問題集</p>
+  <textarea name="question"></textarea>
+  <p>回答</p>
+  <textarea name="answer_1"></textarea>
+  <p>回答</p>
+  <textarea name="answer_2"></textarea>
+  <p>！正解！</p>
+  <textarea name="user_answer"></textarea>
+  <input type="submit" value="クイズを作成">  
+  <%=session[:user_id]%>
+  <h6>おそらくアンサーと一緒でanswer_attributes: { 
+    user_answer: params[:user_answer]が必要</6>
+    <p>原因として、新規の問題を作る時user_idがQuizコントローラーで紐付けてないため</p>
+    <p>Ruby on Rails5 学習レッスン IX 参照</p>
+  <% end %>

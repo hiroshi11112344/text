@@ -1,0 +1,19 @@
+<div class="main users-new">
+  <div class="container">
+    <div class="form-heading">ログイン</div>
+    <div class="form users-form">
+      <div class="form-body">
+      <%= form_tag("/login") do%>
+        <p>名前</p>
+        <input name="name">
+        <p>メールアドレス</p>
+        <input name= "email">
+        <input type="submit" value="ログイン">
+      <%end%>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h6>tweet(dev)> u = User.new(name: "aiueo", email: "aiueo", score: 0)
+=> </h6>
