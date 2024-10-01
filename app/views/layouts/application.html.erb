@@ -22,9 +22,12 @@
   <li>
     <%= session[:user_id] %>
   </li>
+  <%= button_to("ログアウト", "/logout", {method: "post"}) %> 
+  
+
 <% end %>
 
-
+    
     <%= link_to("new", "/quizzes/new")%>
     <%= link_to("index", "/quizzes/index")%>
     <%= link_to("login", "/login")%>

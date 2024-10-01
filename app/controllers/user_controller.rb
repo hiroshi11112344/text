@@ -16,5 +16,11 @@ class UserController < ApplicationController
       render("users/login")
     end
   end
+
+  def logout  
+    @a = "ログインしてください"
+    session[:user_id] = nil
+    redirect_to("/login")
+  end
   
 end

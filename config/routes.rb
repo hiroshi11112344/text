@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  
   get "user/new"
   get "login" => "user#login"
   post "login" => "user#login_form"
+  post "logout" => "user#logout" 
+  
 
 
   get "quizzes/new" => "quizzes#new"
