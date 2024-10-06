@@ -2,6 +2,12 @@ class UserController < ApplicationController
   def new
   end
 
+  def index
+    @users = User.all
+
+  end
+
+
  #ログイン画面
   def login
   end
@@ -22,5 +28,7 @@ class UserController < ApplicationController
     session[:user_id] = nil
     redirect_to("/login")
   end
+
+  
   
 end

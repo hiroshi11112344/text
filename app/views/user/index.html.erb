@@ -1,0 +1,7 @@
+<h1>ユーザー 一覧</h1>
+
+<% @users.each do |user| %>
+  <%= user.name%> : <%= user.score%> : <%= user.total_time%> 
+  <p>スコア昇順で表示</p>
+<%end%>
+ 

@@ -1,11 +1,10 @@
 <h1>クイズ一覧</h1>
 
+
 <% @quiz.each do |quiz|%>
   <li>
    <%=link_to(quiz.title, "/quizzes/#{quiz.id}show")%>
-   
    <% options = [quiz.answer_1, quiz.answer_2, quiz.answer.user_answer].shuffle %>
-    
     <% options.each do |option| %>
       <%= option %>
     <% end %>
