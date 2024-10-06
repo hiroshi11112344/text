@@ -2,7 +2,7 @@
 
 <% @quiz.each do |quiz|%>
   <li>
-   <%= quiz.question%>
+   <%=link_to(quiz.title, "/quizzes/#{quiz.id}show")%>
    
    <% options = [quiz.answer_1, quiz.answer_2, quiz.answer.user_answer].shuffle %>
     

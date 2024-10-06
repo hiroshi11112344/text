@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   post "quizzes/create" => "quizzes#create"
 
   get "quizzes/index" => "quizzes#index"
+  get "quizzes/:id" => "quizzes#show"
+  post "quizzes/:id/check_answer", to: "quizzes#check_answer"
 
 
   get "/" => "home#top"

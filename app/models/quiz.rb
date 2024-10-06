@@ -3,4 +3,6 @@ class Quiz < ApplicationRecord
   accepts_nested_attributes_for :answer
 
   belongs_to :user
+
+  
 end

@@ -32,5 +32,9 @@
     <%= link_to("index", "/quizzes/index")%>
     <%= link_to("login", "/login")%>
     <%= yield %>
+
+    <% if flash[:notice] %>
+        <%= flash[:notice] %>
+    <% end %>
   </body>
 </html>
