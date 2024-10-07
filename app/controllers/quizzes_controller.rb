@@ -53,7 +53,8 @@ class QuizzesController < ApplicationController
         #@quiz.total_time = (@quiz.total_time.to_f + elapsed_minutes.to_f)
         #@quiz.save
         
-        #ユーザータイムカラムを作ってそこに加算保存します
+        #ユーザータイムカラムを作ってそこに加算保存します.
+        
         @quiz.user.total_time= (@quiz.user.total_time.to_f + elapsed_minutes.to_f)
         @quiz.user.save
 
