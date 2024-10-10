@@ -25,7 +25,9 @@
     <% if session[:user_id] %>
     <li>
     <%= session[:user_id] %>
+
     </li>
+    <%end%>
     <%= button_to("ログアウト", "/logout", {method: "post"}) %> 
     <%= link_to("new", "/quizzes/new")%>
     <%= link_to("index", "/quizzes/index")%>
@@ -38,7 +40,7 @@
       <% end %>
     <%= yield %>
 
-    <% end %>
     
+   
   </body>
 </html>
