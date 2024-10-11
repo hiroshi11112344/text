@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Tweet" %></title>
+    <title>Quiz</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
@@ -22,23 +22,39 @@
 
 
   <body>
-    <% if session[:user_id] %>
-    <li>
-    <%= session[:user_id] %>
-
-    </li>
-    <%end%>
-    <%= button_to("ログアウト", "/logout", {method: "post"}) %> 
-    <%= link_to("new", "/quizzes/new")%>
-    <%= link_to("index", "/quizzes/index")%>
-    <%= link_to("login", "/login")%>
-    <%= link_to("usernew", "/user/new")%>
-    <%= link_to("userindex", "/user/index")%>
-
-      <% if flash[:notice] %>
-        <%= flash[:notice] %>
-      <% end %>
+    <div class="header">
+    <div class="header-logo">Quiz掲示板</div>
+      <div class="header_login">
+        <%= button_to("ログイン", "/login", {method: "get"})%>
+        <%= button_to("ログアウト", "/logout", {method: "post"})%> 
+      </div>
+      <div class="header_link">
+          <% if session[:user_id] %>    
+            <div class="user_name"><%= session[:user_id] %></div>
+            <li><%= link_to("トップページ","/")%></li>
+            <li><%= link_to("新規投稿作成", "/quizzes/new")%></li>
+            <li><%= link_to("ユーザー一覧", "/user/index")%></li>
+            <li><%= link_to("投稿","/quizzes/index")%></li>
+          <%else%>
+            <li><%= link_to("新規ユーザ", "/user/new")%></li>
+            <li><%= link_to("トップページ","/")%></li>
+            <li><%= link_to("投稿","/quizzes/index")%></li>
+          <%end%>
+        </ul>
+      </div>
+    </div>
+    
+    <% if flash[:notice] %>
+      <%= flash[:notice] %>
+    <% end %>
     <%= yield %>
+    
+    
+
+
+
+
+    
 
     
    
