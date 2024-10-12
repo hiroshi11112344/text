@@ -9,7 +9,7 @@ class QuizzesController < ApplicationController
       answer_1: params[:answer_1],
       answer_2: params[:answer_2],
       title: params[:title],
-      user_id: @current_user.id,    #.id忘れずに！
+      user_id: @current_user.id,   #.id忘れずに！
       # quizテーブルに書いた、accepts_nested_attributes_for を使用することで、Quiz の作成時に Answer のデータも同時に保存できます。
       answer_attributes: { 
       user_answer: params[:user_answer]

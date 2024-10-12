@@ -27,7 +27,7 @@
   -webkit-text-stroke: 2px black; /* 外枠を黒に設定 */
   text-align: center; /* ロゴを中央揃えにする */
   font-family: 'Comic Sans MS', cursive, sans-serif;
-  text-shadow: 2px 2px 0px rgb(35, 59, 243), 4px 4px 0px rgb(5, 180, 239);/*後で変更かも*/
+  text-shadow: 2px 2px 0px rgb(35, 59, 243), 4px 4px 0px rgb(237, 245, 248);/*後で変更かも*/
 }
 
 .header_link {

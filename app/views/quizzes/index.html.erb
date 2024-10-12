@@ -1,13 +1,11 @@
 <h1>クイズ一覧</h1>
 
+<div class="quiz_options_container">
+  <% @quiz.each do |quiz|%>
+    <div class="quiz_option_2">
+      <%=link_to(quiz.title, "/quizzes/#{quiz.id}show")%>
+      <p><%= quiz.question%></p>
+    </div>
+  <% end %>
+</div>
 
-<% @quiz.each do |quiz|%>
-  <li>
-   <%=link_to(quiz.title, "/quizzes/#{quiz.id}show")%>
-   <% options = [quiz.answer_1, quiz.answer_2, quiz.answer.user_answer].shuffle %>
-    <% options.each do |option| %>
-      <%= option %>
-    <% end %>
-    <%= quiz.user.name%>
-  </li>
-<% end %>
