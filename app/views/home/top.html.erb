@@ -4,19 +4,22 @@
   <head>
   </head>
 
-
   <body>
-    <diiv class="main">
-      <%= link_to image_tag("Bg01.jpg"), "/quizzes/index"%>
+  <h1>ようこそ</h1>
+  <p>ログイン登録して投稿できるようにしよう！</p>
+    <diiv class="top_main">
+      <div class="top_options_container">
+        <% @quiz.sample(3).each do |quiz|%>
+          <div class="top_option_2">
+            <%=link_to(quiz.title, "/quizzes/#{quiz.id}show")%>
+             <p><%= quiz.question%></p>
+          </div>
+         <% end %>
+      </div>
+    </div>  
+    <div class="top_footer">
     </div>
-  </body>
-  <div class="footer">
-    
-  </div>
 
-  <div class="footer">
-    
-  </div>
-  
+  </body>
   
 </html>

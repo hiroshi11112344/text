@@ -16,10 +16,12 @@ class QuizzesController < ApplicationController
       }
 
     )
-    if @quiz.save
+    if 
+      @quiz.save
       redirect_to("/quizzes/new")
     else
-      render :new
+      redirect_to("/")
+      #render :new
     end
   
   end
@@ -44,7 +46,7 @@ class QuizzesController < ApplicationController
     selected_answer = params[:selected_answer]
     if @quiz && selected_answer
       elapsed_time = Time.current - @quiz.started_at # 経過時間（秒単位）
-      elapsed_minutes = (elapsed_time / 60).round(2) # 分単位に変換し、少数第2位まで表示
+      elapsed_minutes = (elapsed_time / 60).round(1) # 分単位に変換し、少数第2位まで表示
       if selected_answer == @quiz.answer.user_answer
         @quiz.user.score = @quiz.user.score.to_i + 1
         @quiz.user.save # スコアをデータベースに保存  

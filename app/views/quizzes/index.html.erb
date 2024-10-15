@@ -1,11 +1,20 @@
-<h1>クイズ一覧</h1>
+<body>
 
-<div class="quiz_options_container">
-  <% @quiz.each do |quiz|%>
-    <div class="quiz_option_2">
-      <%=link_to(quiz.title, "/quizzes/#{quiz.id}show")%>
-      <p><%= quiz.question%></p>
-    </div>
-  <% end %>
-</div>
 
+  <h1>クイズ一覧</h1>
+
+  <div class="quiz_main">
+   <div class="quiz_options_container">
+      <% @quiz.each do |quiz|%>
+      <div class="quiz_option_2">
+         <%=link_to(quiz.title, "/quizzes/#{quiz.id}show")%>
+         <p><%= quiz.question%></p>
+      </div>
+     <% end %>
+   </div>
+
+  </div>
+  <div class="quiz_footer">
+      
+  </div>
+</body>

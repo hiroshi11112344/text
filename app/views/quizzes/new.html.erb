@@ -1,20 +1,44 @@
 <h1>Quizzes</h1>
 <p>Find me in app/views/quizzes/new.html.erb</p>
 
+<body>
+  <%= form_tag("/quizzes/create") do %>
+    <div class="quiz_new">
+      <div class="new_title">
+        <p>題名</p>
+        <input name="title" type="text">
+      </div>
 
-<%= form_tag("/quizzes/create") do %>
-  <p>題名</p>
-  <textarea name="title"></textarea>
-  <p>問題集</p>
-  <textarea name="question"></textarea>
-  <p>回答</p>
-  <textarea name="answer_1"></textarea>
-  <p>回答</p>
-  <textarea name="answer_2"></textarea>
-  <p>！正解！</p>
-  <textarea name="user_answer"></textarea>
-  <input type="submit" value="クイズを作成">  
-  <%=session[:user_id]%>
-  
+      <div class="new_problem">
+        <p>問題集</p>
+        <input name="question" type="text">
+      </div>
+
+      <div class="new_request_1">
+        <p>回答</p>
+        <input name="answer_1" type="text">
+      </div>
+
+      <div class="new_request_2">
+        <p>回答</p>
+        <input name="answer_2" type="text">
+      </div>
+
+      <div class="new_correct_answer">
+        <p>！正解！</p>
+        <input name="user_answer" type="text">
+      </div>
+
+      <p><input type="submit" value="クイズを作成"></p>
+      <%=session[:user_id]%>
+    </div>
+    
+    <% end %>
+    <p>20241014 quizのところでアンサーテーブルに制限をかけようとしてるのでエラーが怒っています</p>
+    <!--https://chatgpt.com/g/g-8sPlJ64Gn-tiyatutogpt/c/670c7e4f-a744-8010-bfd0-0f29fbf0ece6-->
+    <% if @quiz.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <p>入力内容に誤りがあります。すべての必須項目を入力してください。</p>
+    </div>
   <% end %>
-  
+</body>
