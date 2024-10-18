@@ -23,24 +23,24 @@
 
   <body>
     <div class="header">
-    <div class="header-logo">Quiz掲示板</div>
-      <div class="header_login">
-        <%= button_to("ログイン", "/login", {method: "get"})%>
-        <%= button_to("ログアウト", "/logout", {method: "post"})%> 
-      </div>
-      <div class="header_link">
-          <% if session[:user_id] %>    
-            <div class="user_name"><%= session[:user_id] %></div>
-            <li><%= link_to("トップページ","/")%></li>
-            <li><%= link_to("新規投稿作成", "/quizzes/new")%></li>
-            <li><%= link_to("ユーザー一覧", "/user/index")%></li>
-            <li><%= link_to("投稿","/quizzes/index")%></li>
-          <%else%>
-            <li><%= link_to("新規ユーザ", "/user/new")%></li>
-            <li><%= link_to("トップページ","/")%></li>
-            <li><%= link_to("投稿","/quizzes/index")%></li>
-          <%end%>
-        </ul>
+      <div class="header-logo">Quiz掲示板</div>
+        <div class="header_login">
+          <%= button_to("ログイン", "/login", {method: "get"})%>
+          <%= button_to("ログアウト", "/logout", {method: "post"})%> 
+        </div>
+        <div class="header_link">
+            <% if session[:user_id] %>    
+              <div class="user_name"><%= session[:user_id] %></div>
+              <li><%= link_to("トップページ","/")%></li>
+              <li><%= link_to("新規投稿作成", "/quizzes/new")%></li>
+              <li><%= link_to("ユーザー一覧", "/user/index")%></li>
+              <li><%= link_to("投稿","/quizzes/index")%></li>
+            <%else%>
+              <li><%= link_to("新規ユーザ", "/user/new")%></li>
+              <li><%= link_to("トップページ","/")%></li>
+              <li><%= link_to("投稿","/quizzes/index")%></li>
+            <%end%>
+          </ul>
       </div>
     </div>
     <%= stylesheet_link_tag 'quizzes', media: 'all' %>
@@ -48,15 +48,5 @@
       <%= flash[:notice] %>
     <% end %>
     <%= yield %>
-    
-    
-
-
-
-
-    
-
-    
-   
   </body>
 </html>
