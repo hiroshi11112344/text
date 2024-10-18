@@ -9,13 +9,13 @@
   background-color: #f4f5d5;
   height: 110px;
   width: 100%; /* フッターを画面の幅いっぱいに */
-  position: fixed; /* 画面の下部に固定 */
-  bottom: 0; /* 下部に配置 */
+  /*position: fixed; 画面の下部に固定 　スクロール系*/
+  bottom: 0;  /*下部に配置 */
   
 }
 
 
-
+/*ーーーーここから新規投稿作成ページquizzes/indexのCSSになりますーーーーーーーー*/
 .quiz_options_container {
   display: flex;               /* 横並びにする */
   flex-wrap: wrap;             /* 3つで折り返す */
@@ -38,8 +38,12 @@
 
 
 
-/*ーーーーここから新規投稿作成ページquiznewのCSSになりますーーーーーーーー*/
+/*ーーーーここから新規投稿作成ページquizzes/newのCSSになりますーーーーーーーー*/
 
+.messages{
+  text-align: center; 
+  color: rgb(255, 115, 0);
+}
 .quiz_new {
   gap: 20px;                   /* 各要素の間にスペースを追加 */
   justify-content: space-between; /* 余白を均等に配置 */
@@ -52,7 +56,8 @@
   padding: 20px;               /* 内側の余白 */
   border-radius: 10px;         /* 角を丸める */
 }
-
+/**/
+/*-------題名---------*/
 .new_title input{
   background-color: #fdfdfd;   /* 背景色 */
   border: 2px solid #66b0f9;      /* 枠線 */
@@ -61,7 +66,14 @@
   text-align: center;    
 }
  
-
+.new_title small {
+  font-size: 12px; /* 文字を小さくする */
+  display: block;  /* 改行する */
+  margin-bottom: 10px; /* 入力フィールドとの間に余白を入れる */
+  margin-top: -7px;/*文字全体を上に上げてます*/
+  color: rgb(255, 0, 0);
+}
+/*-------問題集---------*/
 .new_problem textarea{
   background-color: #fdfdfd;   /* 背景色 */
   border: 2px solid #66b0f9;   /* 枠線 */
@@ -72,6 +84,15 @@
   overflow-wrap: break-word;   /* 単語の途中で折り返し */
 }
 
+.new_problem small{
+  font-size: 12px; /* 文字を小さくする */
+  display: block;  /* 改行する */
+  margin-bottom: 10px; /* 入力フィールドとの間に余白を入れる */
+  margin-top: -7px;/*文字全体を上に上げてます*/
+  color: rgb(255, 0, 0);
+}
+
+/*-------回答---------*/
 .new_request_1 input{
   background-color: #fdfdfd;   /* 背景色 */
   border: 2px solid #66b0f9;      /* 枠線 */
@@ -80,6 +101,16 @@
   text-align: center;  
 
 }
+
+.new_request_1 small{
+  font-size: 12px; /* 文字を小さくする */
+  display: block;  /* 改行する */
+  margin-bottom: 10px; /* 入力フィールドとの間に余白を入れる */
+  margin-top: -7px;/*文字全体を上に上げてます*/
+  color: rgb(255, 0, 0);
+}
+
+/*-------回答---------*/
 .new_request_2 input{
   background-color: #fdfdfd;   /* 背景色 */
   border: 2px solid #66b0f9;      /* 枠線 */
@@ -87,11 +118,28 @@
   height: 20px; /* 高さを200pxに設定 */
   text-align: center;  
 }
+
+.new_request_2 small{
+  font-size: 12px; /* 文字を小さくする */
+  display: block;  /* 改行する */
+  margin-bottom: 10px; /* 入力フィールドとの間に余白を入れる */
+  margin-top: -7px;/*文字全体を上に上げてます*/
+  color: rgb(255, 0, 0);
+}
+
+/*-------答え-----------*/
 .new_correct_answer input{
   background-color: #fdfdfd;   /* 背景色 */
   border: 2px solid #66b0f9;      /* 枠線 */
   width: 500px; /* 横幅を親要素いっぱいに */
   height: 20px; /* 高さを200pxに設定 */
   text-align: center;  
+}
 
+.new_correct_answer small{
+  font-size: 12px; /* 文字を小さくする */
+  display: block;  /* 改行する */
+  margin-bottom: 10px; /* 入力フィールドとの間に余白を入れる */
+  margin-top: -7px;/*文字全体を上に上げてます*/
+  color: rgb(255, 0, 0);
 }

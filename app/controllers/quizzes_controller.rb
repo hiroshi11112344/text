@@ -18,9 +18,11 @@ class QuizzesController < ApplicationController
     )
     if 
       @quiz.save
-      redirect_to("/quizzes/new")
+      redirect_to("/quizzes/index")
+
     else
-      redirect_to("/")
+      redirect_to("/quizzes/new")
+      flash[:notice] = "入力に誤りがあるみたいです"
       #render :new
     end
   

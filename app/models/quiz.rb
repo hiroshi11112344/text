@@ -3,10 +3,10 @@ class Quiz < ApplicationRecord
   accepts_nested_attributes_for :answer
 
   belongs_to :user
-  validates :question, presence: true
-  validates :answer_1, presence: true
-  validates :answer_2, presence: true
-  validates :title, presence: true
+  validates :question, {presence: true, length:{maximum: 250}}
+  validates :answer_1, {presence: true, length:{maximum: 50}}
+  validates :answer_2, {presence: true, length:{maximum: 50}}
+  validates :title, {presence: true, length:{maximum: 50}}
   #validates :user_answer, presence: true quizテーブルのカラムではないのでエラーが起きます
   
 end

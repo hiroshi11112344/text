@@ -9,8 +9,9 @@
   background-color: #f4f5d5;
   height: 110px;
   width: 100%; /* フッターを画面の幅いっぱいに */
-  position: fixed; /* 画面の下部に固定 */
-  bottom: 0; /* 下部に配置 */
+  /*position: fixed; 画面の下部に固定 　スクロール系*/
+  position: fixed;/* 常にページの下部に配置 */
+  bottom: 0;  /*下部に配置 */
   
 }
 
