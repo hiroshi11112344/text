@@ -15,6 +15,7 @@
 }
 
 
+
 .quiz_options_container {
   display: flex;               /* 横並びにする */
   flex-wrap: wrap;             /* 3つで折り返す */
