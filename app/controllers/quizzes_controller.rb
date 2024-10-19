@@ -29,10 +29,23 @@ class QuizzesController < ApplicationController
   end
 
   def index
-    @quiz = Quiz.all
+    #@quiz = Quiz.page(params[:page]).per(6)
     
-    #<%= quiz.answer.user_answer%>
+    #現在のページを取得、デフォルトは１
+    current_page = (params[:page] || 1).to_i
 
+    #1ページに表示するクイズの数
+    per_page = 6
+
+    #クイズをページに応じて取得する
+    @quiz = Quiz.order(created_at: :asc).offset((current_page -1)* per_page).limit(per_page)
+
+    # 次へボタン用のページ番号
+    @next_page = current_page + 1
+
+    # 戻るボタン用のページ番号ただし、1ページ目は戻れない）
+    @prev_page = current_page - 1 if current_page > 1
+    
   end
 
   def show
