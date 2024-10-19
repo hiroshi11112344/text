@@ -29,7 +29,7 @@ class QuizzesController < ApplicationController
   end
 
   def index
-    @quiz = Quiz.page(params[:page]).per(6)
+    #@quiz = Quiz.page(params[:page]).per(6)
     
     #現在のページを取得、デフォルトは１
     current_page = (params[:page] || 1).to_i
