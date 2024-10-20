@@ -60,28 +60,40 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.find_by(id: params[:id])
     selected_answer = params[:selected_answer]
     if @quiz && selected_answer
-      elapsed_time = Time.current - @quiz.started_at # 経過時間（秒単位）
-      elapsed_minutes = (elapsed_time / 60).round(1) # 分単位に変換し、少数第2位まで表示
+      elapsed_time = (Time.current - @quiz.started_at).to_i # 経過時間（秒単位）
+      # 秒数を時間、分、秒の形式に変換
+      time_in_hours = Time.at(elapsed_time).utc.strftime("%H:%M:%S")
       if selected_answer == @quiz.answer.user_answer
         @quiz.user.score = @quiz.user.score.to_i + 1
         @quiz.user.save # スコアをデータベースに保存  
-        flash[:notice] = "正解 : #{elapsed_minutes}"
-        #トータルタイムカラムを作ってそこに加算保存します　　あってもなくてもいい
-        #@quiz.total_time = (@quiz.total_time.to_f + elapsed_minutes.to_f)
-        #@quiz.save
-        
-        #ユーザータイムカラムを作ってそこに加算保存します
-        @quiz.user.total_time= (@quiz.user.total_time.to_f + elapsed_minutes.to_f)
+        flash[:notice] = "正解 : #{time_in_hours}"
+
+       # total_time が nil の場合は 0 に設定してから秒単位で加算
+        @quiz.user.total_time ||= 0.0
+        @quiz.user.total_time += elapsed_time.to_i # 秒単位で加算
         @quiz.user.save
-
-
+        
+        # 合計時間を "HH:MM:SS" 形式で表示
+        total_time_in_hours = seconds_to_time(@quiz.user.total_time)
+        flash[:notice] += " 総合時間: #{total_time_in_hours}"
+      
         redirect_to("/quizzes/new")
       else selected_answer != @quiz.answer.user_answer
         flash[:notice] = "不正解"
         redirect_to("/quizzes/new")
       end
     end
+    
 
+  end
+  
+  private
+  # 秒数を "HH:MM:SS" 形式の文字列に変換するメソッド
+  def seconds_to_time(seconds)
+  hours = seconds / 3600
+  minutes = (seconds % 3600) / 60
+  seconds = seconds % 60
+  format("%02d:%02d:%02d", hours, minutes, seconds)
   end
 
   
