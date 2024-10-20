@@ -1,22 +1,19 @@
-<div class="mainusers-new">
-  <div class="container">
-    <div class="form-heading">ログイン</div>
-    <div class="formusers-form">
-      <div class="form-body">
+<body>
+  <div class="user_main">
+    <div class="form-heading">ログイン画面</div>
+
+    <div class="form-body">
       <%= form_tag("/login") do%>
         <p>名前</p>
         <input name="name">
         <p>メールアドレス</p>
         <input name= "email">
-        <input type="submit" value="ログイン">
+        <p><input type="submit" value="ログイン"></p>
       <%end%>
-      </div>
     </div>
   </div>
+</body>
+
+
+<div class="user_footer">
 </div>
-
-<h6>tweet(dev)> u = User.new(name: "aiueo", email: "aiueo", score: 0)
-=> </h6>
-
-
-<h1>テスト</h1>

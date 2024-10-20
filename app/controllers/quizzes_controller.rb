@@ -41,11 +41,11 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.order(created_at: :asc).offset((current_page -1)* per_page).limit(per_page)
 
     # 次へボタン用のページ番号
-    @next_page = current_page + 1
+    @next_page = current_page + 1 
 
     # 戻るボタン用のページ番号ただし、1ページ目は戻れない）
     @prev_page = current_page - 1 if current_page > 1
-    
+
   end
 
   def show
