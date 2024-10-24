@@ -9,7 +9,7 @@ class QuizzesController < ApplicationController
       answer_1: params[:answer_1],
       answer_2: params[:answer_2],
       title: params[:title],
-      user_id: @current_user.id,   #.id忘れずに！
+      user_id: @current_user.id,   # .id忘れずに！
       # quizテーブルに書いた、accepts_nested_attributes_for を使用することで、Quiz の作成時に Answer のデータも同時に保存できます。
       answer_attributes: { 
       user_answer: params[:user_answer]
@@ -59,20 +59,34 @@ class QuizzesController < ApplicationController
   def check_answer
     @quiz = Quiz.find_by(id: params[:id])
     selected_answer = params[:selected_answer]
+    @user = @current_user
+
     if @quiz && selected_answer
+
       elapsed_time = (Time.current - @quiz.started_at).to_i # 経過時間（秒単位）
       # 秒数を時間、分、秒の形式に変換
       time_in_hours = Time.at(elapsed_time).utc.strftime("%H:%M:%S")
+
+      # 中間テーブルログインしているユーザーIDと開いているクイズIDの紐付け
+      quiz_result = QuizResult.find_or_create_by(user: @user, quiz: @quiz) 
+      
       if selected_answer == @quiz.answer.user_answer
+        # QuizResultに保存（ユーザーとクイズごとの解答時間を管理）
+        quiz_result.time_spent ||= 0.0
+        quiz_result.time_spent = elapsed_time.to_i
+        quiz_result.save
+
+        # ユーザーに正解したらスコア+1
         @quiz.user.score = @quiz.user.score.to_i + 1
         @quiz.user.save # スコアをデータベースに保存  
         flash[:notice] = "正解 : #{time_in_hours}"
+        
 
-       # total_time が nil の場合は 0 に設定してから秒単位で加算
+        # total_time が nil の場合は 0 に設定してから秒単位で加算
         @quiz.user.total_time ||= 0.0
         @quiz.user.total_time += elapsed_time.to_i # 秒単位で加算
         @quiz.user.save
-        
+
         # 合計時間を "HH:MM:SS" 形式で表示
         total_time_in_hours = seconds_to_time(@quiz.user.total_time)
         flash[:notice] += " 総合時間: #{total_time_in_hours}"
@@ -84,7 +98,7 @@ class QuizzesController < ApplicationController
       end
     end
 
-    
+
     
 
   end

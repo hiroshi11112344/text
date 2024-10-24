@@ -7,6 +7,9 @@ class Quiz < ApplicationRecord
   validates :answer_1, {presence: true, length:{maximum: 50}}
   validates :answer_2, {presence: true, length:{maximum: 50}}
   validates :title, {presence: true, length:{maximum: 50}}
-  #validates :user_answer, presence: true quizテーブルのカラムではないのでエラーが起きます
+  
+  # Quiz_result中間テーブルの紐付け
+  has_many :quiz_results
+  has_many :users, through: :quiz_results
   
 end
