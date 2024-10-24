@@ -23,21 +23,21 @@ class QuizzesController < ApplicationController
     else
       redirect_to("/quizzes/new")
       flash[:notice] = "入力に誤りがあるみたいです"
-      #render :new
+      # render :new
     end
   
   end
 
   def index
-    #@quiz = Quiz.page(params[:page]).per(6)
+    # @quiz = Quiz.page(params[:page]).per(6)
     
-    #現在のページを取得、デフォルトは１
+    # 現在のページを取得、デフォルトは１
     current_page = (params[:page] || 1).to_i
 
-    #1ページに表示するクイズの数
+    # 1ページに表示するクイズの数
     per_page = 6
 
-    #クイズをページに応じて取得する
+    # クイズをページに応じて取得する
     @quiz = Quiz.order(created_at: :asc).offset((current_page -1)* per_page).limit(per_page)
 
     # 次へボタン用のページ番号
@@ -83,17 +83,25 @@ class QuizzesController < ApplicationController
         redirect_to("/quizzes/new")
       end
     end
+
+    
     
 
   end
   
   private
+
   # 秒数を "HH:MM:SS" 形式の文字列に変換するメソッド
   def seconds_to_time(seconds)
+
   hours = seconds / 3600
+
   minutes = (seconds % 3600) / 60
+
   seconds = seconds % 60
+
   format("%02d:%02d:%02d", hours, minutes, seconds)
+  
   end
 
   

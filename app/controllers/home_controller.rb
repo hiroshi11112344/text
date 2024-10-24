@@ -5,4 +5,4 @@ class HomeController < ApplicationController
 end
 
 
-#<%= link_to image_tag("Bg01.jpg"), "/quizzes/index"%>
+# <%= link_to image_tag("Bg01.jpg"), "/quizzes/index"%>

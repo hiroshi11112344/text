@@ -1,7 +1,20 @@
 <h1>ユーザー 一覧</h1>
 
-<% @users.each do |user| %>
-  <%= user.name%> : <%= user.score%> : <%= user.total_time%> 
-  <p>スコア昇順で表示</p>
-<%end%>
- 
+<body>
+  <div class="userindex_main">
+    <% @users.each do |user| %>
+      <div class="user_index_score">
+       <div class="name"> <%= user.name%> </div>
+       <div class="score"><%= user.score%> </div> 
+       <div class="time"><%= Time.at(user.total_time).utc.strftime("%H:%M:%S")%></div>
+      </div>
+    <%end%>
+  </div>
+
+
+
+
+  <div class="userindex_footer">
+  </div>
+</body>
+

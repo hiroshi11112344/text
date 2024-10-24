@@ -3,7 +3,8 @@ class UserController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.order(score: :desc) 
+    
 
   end
 
