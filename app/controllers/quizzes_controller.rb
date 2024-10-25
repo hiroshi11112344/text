@@ -53,14 +53,27 @@ class QuizzesController < ApplicationController
     @options = [@quiz.answer_1, @quiz.answer_2, @quiz.answer.user_answer].shuffle 
     @quiz.started_at = Time.current
     @quiz.save
-    
+
+
+
+    if @quiz
+      # クイズに関連するQuizResultをtime_spent
+      @quiz_result = QuizResult.where(quiz: @quiz).order(:time_spent).limit(3)
+    else
+      # each文の中身がnullだった場合こちらでnullエラーを防ぎます
+      @quiz_result = []
+    end
+      
   end
+    
+    
+  
 
   def check_answer
     @quiz = Quiz.find_by(id: params[:id])
     selected_answer = params[:selected_answer]
     @user = @current_user
-
+    
     if @quiz && selected_answer
 
       elapsed_time = (Time.current - @quiz.started_at).to_i # 経過時間（秒単位）
@@ -72,7 +85,7 @@ class QuizzesController < ApplicationController
       
       if selected_answer == @quiz.answer.user_answer
         # QuizResultに保存（ユーザーとクイズごとの解答時間を管理）
-        quiz_result.time_spent ||= 0.0
+        quiz_result.time_spent = 0
         quiz_result.time_spent = elapsed_time.to_i
         quiz_result.save
 
@@ -97,10 +110,6 @@ class QuizzesController < ApplicationController
         redirect_to("/quizzes/new")
       end
     end
-
-
-    
-
   end
   
   private
@@ -117,6 +126,4 @@ class QuizzesController < ApplicationController
   format("%02d:%02d:%02d", hours, minutes, seconds)
   
   end
-
-  
 end

@@ -1,12 +1,36 @@
 <h1> クイズ </h1>
 
+<body>
+  <div class="shwo_main">
 
-<%= @quiz.question %>
-<%= form_tag("/quizzes/#{@quiz.id}/check_answer", method: :post) do %>
-  <% @options.each do |option| %> 
-    <%= radio_button_tag 'selected_answer', option %> 
-    <%= option %><br>
-  <% end %>
- <%= submit_tag '答えを送信' %>
-<% end %>
+    <%= @quiz.question %>
+    <%= form_tag("/quizzes/#{@quiz.id}/check_answer", method: :post) do %>
+      <% @options.each do |option| %> 
+        <%= radio_button_tag 'selected_answer', option %> 
+        <%= option %><br>
+      <% end %>
+    <%= submit_tag '答えを送信' %>
+    <% end %>
+
+    <!-- ランキング -->
+    <% if @quiz_result.present? %>
+      <% @quiz_result.each do |result| %>
+        <p>
+          <%= result.user.name %>
+          <%= Time.at(result.time_spent).utc.strftime("%H:%M:%S") %>
+        </p>
+      <% end %>
+    <%end%>
+    
+     
+
+
+
+
+
+
+
+
+  </div>
+</body>
 
