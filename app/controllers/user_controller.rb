@@ -1,7 +1,5 @@
 class UserController < ApplicationController
-  def new
-  end
-
+  
   def index
     @users = User.order(score: :desc) 
     
