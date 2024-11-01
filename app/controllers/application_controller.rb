@@ -33,20 +33,16 @@ class ApplicationController < ActionController::Base
         quiz_result.save
 
         # ユーザーに正解したらスコア+1
-        @quiz.user.score = @quiz.user.score.to_i + 1
-        @quiz.user.save # スコアをデータベースに保存  
+        @user.score = @user.score.to_i + 1
+        @user.save # スコアをデータベースに保存  
         flash[:notice] = "正解 : #{time_in_hours}"
         
 
         # total_time が nil の場合は 0 に設定してから秒単位で加算
-        @quiz.user.total_time ||= 0.0
-        @quiz.user.total_time += elapsed_time.to_i # 秒単位で加算
-        @quiz.user.save
+        @user.total_time ||= 0.0
+        @user.total_time += elapsed_time.to_i # 秒単位で加算
+        @user.save
 
-        # 合計時間を "HH:MM:SS" 形式で表示
-        total_time_in_hours = seconds_to_time(@quiz.user.total_time)
-        flash[:notice] += " 総合時間: #{total_time_in_hours}"
-      
         redirect_to("/quizzes/new")
       else selected_answer != @quiz.answer.user_answer
         flash[:notice] = "不正解"

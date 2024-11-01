@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   post "quizzes/:id/check_answer", to: "quizzes#check_answer"
 
 
-  get "user/new" => "user#new"
+ 
   get "user/index" => "user#index"
 
   get "/" => "home#top"
