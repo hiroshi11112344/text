@@ -43,6 +43,13 @@ class QuizzesController < ApplicationController
     # クイズをページに応じて取得する
     @quiz = Quiz.order(created_at: :asc).offset((current_page -1)* per_page).limit(per_page)
 
+    # クイズの総数
+    total_quizzes = Quiz.count
+
+    # 最後のページの判定
+    @is_last_page = (current_page * per_page) >= total_quizzes
+
+
     # 次へボタン用のページ番号
     @next_page = current_page + 1 
 

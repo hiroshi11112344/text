@@ -18,7 +18,9 @@
       <%end%>
 
       <!-- 次へボタン -->
-      <%= link_to('次へ', "/quizzes/index?page=#{@next_page}")%>
+      <% unless @is_last_page %>
+        <%= link_to('次へ', "/quizzes/index?page=#{@next_page}") %>
+      <% end %>
     </div>
 
   </div>
