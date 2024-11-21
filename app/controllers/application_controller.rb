@@ -21,36 +21,47 @@ class ApplicationController < ActionController::Base
     @user = @current_user
     
     if @quiz && selected_answer
+      if @user 
+        elapsed_time = (Time.current - @quiz.started_at).to_i # 経過時間（秒単位）
+        # 秒数を時間、分、秒の形式に変換
+        time_in_hours = Time.at(elapsed_time).utc.strftime("%H:%M:%S")
 
-      elapsed_time = (Time.current - @quiz.started_at).to_i # 経過時間（秒単位）
-      # 秒数を時間、分、秒の形式に変換
-      time_in_hours = Time.at(elapsed_time).utc.strftime("%H:%M:%S")
+        # 中間テーブルログインしているユーザーIDと開いているクイズIDの紐付け
+        quiz_result = QuizResult.find_or_create_by(user: @user, quiz: @quiz) 
+          
+        if selected_answer == @quiz.answer.user_answer
+          # QuizResultに保存（ユーザーとクイズごとの解答時間を管理）
+          quiz_result.time_spent = 0
+          quiz_result.time_spent = elapsed_time.to_i
+          quiz_result.save
 
-      # 中間テーブルログインしているユーザーIDと開いているクイズIDの紐付け
-      quiz_result = QuizResult.find_or_create_by(user: @user, quiz: @quiz) 
-      
-      if selected_answer == @quiz.answer.user_answer
-        # QuizResultに保存（ユーザーとクイズごとの解答時間を管理）
-        quiz_result.time_spent = 0
-        quiz_result.time_spent = elapsed_time.to_i
-        quiz_result.save
+          # ユーザーに正解したらスコア+1
+          @user.score = @user.score.to_i + 1
+          @user.save # スコアをデータベースに保存  
+          flash[:notice] = "正解 : #{time_in_hours}"
+            
 
-        # ユーザーに正解したらスコア+1
-        @user.score = @user.score.to_i + 1
-        @user.save # スコアをデータベースに保存  
-        flash[:notice] = "正解 : #{time_in_hours}"
-        
+          # total_time が nil の場合は 0 に設定してから秒単位で加算
+          @user.total_time ||= 0.0
+          @user.total_time += elapsed_time.to_i # 秒単位で加算
+          @user.save
 
-        # total_time が nil の場合は 0 に設定してから秒単位で加算
-        @user.total_time ||= 0.0
-        @user.total_time += elapsed_time.to_i # 秒単位で加算
-        @user.save
-
-        redirect_to("/quizzes/new")
-      else selected_answer != @quiz.answer.user_answer
-        flash[:notice] = "不正解"
-        redirect_to("/quizzes/new")
+          redirect_to("/quizzes/new")
+        else selected_answer != @quiz.answer.user_answer
+          flash[:notice] = "不正解"
+          redirect_to("/quizzes/new")
+        end
+      else
+        # ログインなし状態の処理
+        if selected_answer == @quiz.answer.user_answer
+          flash[:notice] = "正解"
+          return redirect_to("/quizzes/new")
+        else selected_answer != @quiz.answer.user_answer
+          flash[:notice] = "不正解"
+          return redirect_to("/quizzes/new")
+        end
       end
+        
     end
   end
 
