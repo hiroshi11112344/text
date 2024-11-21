@@ -82,7 +82,6 @@ class QuizzesController < ApplicationController
   end
   
   private
-
   # 秒数を "HH:MM:SS" 形式の文字列に変換するメソッド
   def seconds_to_time(seconds)
 
