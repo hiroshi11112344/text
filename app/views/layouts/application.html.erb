@@ -25,8 +25,11 @@
     <div class="header">
       <div class="header-logo">Quiz掲示板</div>
         <div class="header_login">
-          <%= button_to("ログイン", "/login", {method: "get"})%>
-          <%= button_to("ログアウト", "/logout", {method: "post"})%> 
+          <% if @current_user %>
+            <%= button_to("ログアウト", "/logout", {method: "post"})%> 
+          <% else %>
+            <%= button_to("ログイン", "/login", {method: "get"})%>
+          <% end %>
         </div>
         <div class="header_link">
             <% if session[:user_id] %>    
