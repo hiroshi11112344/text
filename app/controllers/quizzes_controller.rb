@@ -49,7 +49,6 @@ class QuizzesController < ApplicationController
     # 最後のページの判定
     @is_last_page = (current_page * per_page) >= total_quizzes
 
-
     # 次へボタン用のページ番号
     @next_page = current_page + 1 
 

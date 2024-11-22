@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
     @quiz = Quiz.find_by(id: params[:id])
     selected_answer = params[:selected_answer]
     @user = @current_user
-    
+    # ↑変数入れなくて良い
     if @quiz && selected_answer
       if @user 
         elapsed_time = (Time.current - @quiz.started_at).to_i # 経過時間（秒単位）
@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
 
         # 中間テーブルログインしているユーザーIDと開いているクイズIDの紐付け
         quiz_result = QuizResult.find_or_create_by(user: @user, quiz: @quiz) 
-          
+        # セーブをアップデート文に買える
         if selected_answer == @quiz.answer.user_answer
           # QuizResultに保存（ユーザーとクイズごとの解答時間を管理）
           quiz_result.time_spent = 0
