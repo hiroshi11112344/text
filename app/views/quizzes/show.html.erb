@@ -26,7 +26,7 @@
           <p>
             <span class="index_xxx">順位 <%= index + 1%></span>
             <span class="username"><%= result.user.name %> </span>
-            <span class="time-spent">tame:<%= Time.at(result.time_spent).utc.strftime("%H:%M:%S") %></span>
+            <span class="time-spent">tame:<%= Time.at(result.time_spent.to_i).utc.strftime("%H:%M:%S") %></span>
           </p>
         <% end %>
       <%end%>
