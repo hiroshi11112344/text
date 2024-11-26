@@ -33,9 +33,12 @@ class ApplicationController < ActionController::Base
           
           # 中間テーブル
           #毎回０にして新しいデータを保存するので　if 小さい　＞　大きい　で保存する時の条件をつける
-          quiz_result.time_spent = 0
-          quiz_result.time_spent = elapsed_time.to_i
-          quiz_result.save
+          #if quiz_result.time_spent.nil? || quiz_result.time_spent >= elapsed_time
+          if quiz_result.time_spent >= elapsed_time
+            quiz_result.time_spent = 0
+            quiz_result.time_spent = elapsed_time.to_i
+            quiz_result.save
+          end
 
           # QuizResultに保存（ユーザーとクイズごとの解答時間を管理）
           # セーブをアップデート文に買える　１１２５
