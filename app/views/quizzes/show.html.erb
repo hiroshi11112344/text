@@ -5,7 +5,21 @@
     
     <div class="quizzwa_show">
     <div class="quiz_question"><%= @quiz.question %></div>
-      <%= form_tag("/quizzes/#{@quiz.id}/check_answer", method: :post) do %>
+
+    <!-- fom_ウィズ  URLの開いたクイズIDのアンサー情報を送りたい--> 
+      <%= form_with(url: "/quizzes/#{@quiz.id}/check_answer", method: :post) do |form|%>
+        <% @options.each do |option| %> 
+          <div class="option"> 
+            <%= form.radio_button :selected_answer, option %>
+            <%= label_tag "selected_answer_#{option}", option %><br>
+          </div>
+        <% end %>
+        <div class="answer"><%= submit_tag '答えを送信' %></div>
+      <% end %>
+    </div>
+    <!-- fom_ウィズ -->
+
+    <!-- <%= form_tag("/quizzes/#{@quiz.id}/check_answer", method: :post) do %>
         <% @options.each do |option| %> 
           <div class="option">
             <%= radio_button_tag 'selected_answer', option %> 
@@ -14,8 +28,7 @@
         <% end %>
         <div class="answer"><%= submit_tag '答えを送信' %></div>
       <% end %>
-    </div>
-        <!-- fom_ウィズ -->
+    </div> -->
       
     
 

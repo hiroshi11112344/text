@@ -58,6 +58,7 @@ class QuizzesController < ApplicationController
   end
 
   def show
+    @quiz1 = Quiz.find_by(id: params[:id])
     @options = [@quiz.answer_1, @quiz.answer_2, @quiz.answer.user_answer].shuffle 
     @quiz.started_at = Time.current
     @quiz.save
