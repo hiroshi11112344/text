@@ -1,0 +1,8 @@
+div.quiz_option_2 {
+  transition: transform 0.2s, color 0.2s;
+}
+
+div.quiz_option_2i:hover {
+  transform: scale(1.2); /* アイコンを拡大 */
+  color: #dfdfdf; /* アイコンの色を青に変更 */
+}
