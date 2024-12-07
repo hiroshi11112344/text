@@ -3,10 +3,10 @@
   <div class="quiz_main">
    <div class="quiz_options_container">
       <% @quiz.each do |quiz|%>
-      <div class="quiz_option_2">
-         <%=link_to(quiz.title, "/quizzes/#{quiz.id}show")%>
-         <p><%= quiz.question%></p>
-      </div>
+        <div class="quiz_option_2">
+            <%=link_to(quiz.title, "/quizzes/#{quiz.id}show")%>
+            <p><%= quiz.question%></p>
+        </div>
      <% end %>
    </div>
 
@@ -17,6 +17,7 @@
         <%= link_to('戻る', "/quizzes/index?page=#{@prev_page}")%>  
       <%end%>
 
+      
       <!-- 次へボタン -->
       <% unless @is_last_page %>
         <%= link_to('次へ', "/quizzes/index?page=#{@next_page}") %>

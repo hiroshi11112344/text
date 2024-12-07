@@ -5,6 +5,7 @@
   background-color: #f9f9f9; /* 背景色を設定（任意） */
 }
 
+
 .quiz_footer {
   background-color: #f4f5d5;
   height: 110px;
@@ -14,7 +15,7 @@
   
 }
 .index_footer {
-  background-color: #f4f5d5;
+  background-color: #c3c586;
   height: 110px;
   width: 100%; /* フッターを画面の幅いっぱいに */
   position: fixed; /*画面の下部に固定 　スクロール系*/
@@ -35,16 +36,22 @@
   margin: 0 auto;              /* コンテナ全体を中央に配置 */
 }
 
-.quiz_option_2 {
-  background-color: #d8f1f6;   /* 背景色 */
+div.quiz_option_2 {
+  background-color: #b2b5fd !important;   /* 背景色 */
   border: 2px solid #ccc;      /* 枠線 */
   padding: 20px;               /* 内側の余白 */
   border-radius: 10px;         /* 角を丸める */
   width: calc(33.333% - 20px); /* 3つ並べるための幅調整 */
   box-sizing: border-box;      /* 枠線やパディングを含めたサイズ計算 */
   text-align: center;          /* テキストを中央に */
-}
 
+  transition: transform 0.3s ease, backgroud-color 0.3s ease/*easeはアニメーションスピードをスムーズにするやつ*/
+}
+div.quiz_option_2:hover {
+  background-color: #fd0166; /*ホバー時の背景色*/
+  transform:  scale(0.2);    /* 少し拡大 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);/* 影を追加して立体感を出す */
+}
 
 
 /*ーーーーここから新規投稿作成ページquizzes/newのCSSになりますーーーーーーーー*/
@@ -61,7 +68,7 @@
   margin: 0 auto;              /* コンテナ全体を中央に配置 */
   text-align: center;   
   background-color: #d8f1f6;   /* 背景色 */
-  border: 2px solid #ccc;      /* 枠線 */
+  border: 2px solid #add1e3;      /* 枠線 */
   padding: 20px;               /* 内側の余白 */
   border-radius: 10px;         /* 角を丸める */
 }
