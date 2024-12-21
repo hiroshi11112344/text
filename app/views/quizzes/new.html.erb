@@ -2,9 +2,9 @@
   <div class="new_main">
     <div class="h1_title"><h1>Quizを投稿しよう!</h1></div>
 
-
   
-    <%= form_tag("/quizzes/create") do %>
+    <%= form_with url: "/quizzes/create", method: :post, local: true do |f| %>
+    
       <% if flash[:notice] %>
         <div class="messages">
            <%= flash[:notice] %>
@@ -12,37 +12,43 @@
       <%end%>
 
       <div class="quiz_new">
+        <p>セレクトボタン</p>
+        <%= f.select :select_button_value, [["数学", "数学"], ["国語", "国語"], ["その他", "その他"]], { prompt: "選択してください" }, class: "form-control" %>
+
         <div class="new_title">
           <p>題名</p>
           <small>50文字以内で入力をお願いします</small>
-          <input name="title" type="text">
+          <%= f.text_field :title, placeholder: "タイトルを入力", class: "form-control" %>
         </div>
 
         <div class="new_problem">
           <p>問題集</p>
           <small>250文字以内で入力をお願いします</small>
-          <textarea name="question"></textarea>
+         <%= f.text_area :question, placeholder: "問題文を入力", class: "form-control" %>
         </div>
 
         <div class="new_request_1">
           <p>回答</p>
           <small>50文字以内で入力をお願いします</small>
-          <input name="answer_1" type="text">
+          <%= f.text_field :answer_1, placeholder: "回答 1 を入力", class: "form-control" %>
         </div>
 
         <div class="new_request_2">
           <p>回答</p>
           <small>50文字以内で入力をお願いします</small>
-          <input name="answer_2" type="text">
+          <%= f.text_field :answer_2, placeholder: "回答 2 を入力", class: "form-control" %>
         </div>
 
         <div class="new_correct_answer">
           <p>！正解！</p>
           <small>50文字以内で入力をお願いします</small>
-          <input name="user_answer" type="text">
+          <%= f.text_field :user_answer, placeholder: "正解を入力", class: "form-control" %>
+        </div>
+        <div class="new_select_button">
+          
         </div>
 
-        <p><input type="submit" value="クイズを作成"></p>
+        <p><%= f.submit "クイズを作成", class: "btn btn-primary" %></p>
       </div>
     <% end %>
   </div>

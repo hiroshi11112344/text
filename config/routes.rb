@@ -11,8 +11,9 @@ Rails.application.routes.draw do
   post "quizzes/create" => "quizzes#create"
 
   get "quizzes/index" => "quizzes#index"
-  get "quizzes/:id" => "quizzes#show"
+  get "quizzes/:id" => "quizzes#show", as: :quiz
   post "quizzes/:id/check_answer", to: "quizzes#check_answer"
+  post "quizzes/index", to: "quizzes#index"
 
 
  

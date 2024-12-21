@@ -16,7 +16,9 @@ class QuizzesController < ApplicationController
       # quizテーブルに書いた、accepts_nested_attributes_for を使用することで、Quiz の作成時に Answer のデータも同時に保存できます。
       answer_attributes: { 
       user_answer: params[:user_answer]
-      }
+      },
+      # 新しく追加したセレクトボタンの値
+      select_button_value: params[:select_button_value]
 
     )
     if 
@@ -32,20 +34,31 @@ class QuizzesController < ApplicationController
   end
 
   def index
-    # @quiz = Quiz.page(params[:page]).per(6)
-    
+
     # 現在のページを取得、デフォルトは１
     current_page = (params[:page] || 1).to_i
-
     # 1ページに表示するクイズの数
     per_page = 6
+  
+    # セレクトボタン　名前はname属性使用
+    select_option = params[:select_option]
 
-    # クイズをページに応じて取得する
-    @quiz = Quiz.order(created_at: :asc).offset((current_page -1)* per_page).limit(per_page)
-
-    # クイズの総数
-    total_quizzes = Quiz.count
-
+    # クイズの取得条件
+    if select_option.present?
+      # セレクトボタンの値に応じたクイズを取得　Quiz.whereを使用しカラムセレクトボタンと送信されたセレクトボタンの紐づけ
+      @quiz = Quiz.where(select_button_value: select_option).offset((current_page - 1) * per_page).limit(per_page)
+    else
+      # クイズをページに応じて取得する
+      @quiz = Quiz.order(created_at: :asc).offset((current_page -1)* per_page).limit(per_page)
+    end
+    
+    # クイズの総数を計算（フィルタリング後のデータ数を取得）total_quizzes = select_option.present? ?Quiz.where...ryの書き方もあったけどわからなくなるのでこちらを使用
+    if select_option.present?
+      total_quizzes = Quiz.where(select_button_value: select_option).count
+    else
+      total_quizzes = Quiz.count
+    end
+    
     # 最後のページの判定
     @is_last_page = (current_page * per_page) >= total_quizzes
 
@@ -55,10 +68,11 @@ class QuizzesController < ApplicationController
     # 戻るボタン用のページ番号ただし、1ページ目は戻れない）
     @prev_page = current_page - 1 if current_page > 1
 
+
   end
 
   def show
-    @quiz1 = Quiz.find_by(id: params[:id])
+    @quiz = Quiz.find_by(id: params[:id])
     @options = [@quiz.answer_1, @quiz.answer_2, @quiz.answer.user_answer].shuffle 
     @quiz.started_at = Time.current
     @quiz.save

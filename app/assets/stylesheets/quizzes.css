@@ -26,6 +26,8 @@
 
 
 /*ーーーーここから新規投稿作成ページquizzes/indexのCSSになりますーーーーーーーー*/
+
+
 .quiz_options_container {
   display: flex;               /* 横並びにする */
   flex-wrap: wrap;             /* 3つで折り返す */
@@ -37,7 +39,7 @@
 }
 
 div.quiz_option_2 {
-  background-color: #b2b5fd !important;   /* 背景色 */
+  background-color: #d6f1f4 !important;   /* 背景色 */
   border: 2px solid #ccc;      /* 枠線 */
   padding: 20px;               /* 内側の余白 */
   border-radius: 10px;         /* 角を丸める */
@@ -49,13 +51,21 @@ div.quiz_option_2 {
 }
 div.quiz_option_2:hover {
   background-color: #fd0166; /*ホバー時の背景色*/
-  transform:  scale(0.2);    /* 少し拡大 */
+  transform:  scale(1.1);    /* 少し拡大 */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);/* 影を追加して立体感を出す */
 }
 
 
 /*ーーーーここから新規投稿作成ページquizzes/newのCSSになりますーーーーーーーー*/
 
+
+.form-control {
+  background-color: #fdfdfd;   /* 背景色 */
+  border: 2px solid #66b0f9;      /* 枠線 */
+  width: 250px; /* %だと横幅を親要素いっぱいに */
+  height: 20px; /* 高さを200pxに設定 */
+  text-align: center;    
+}
 .messages{
   text-align: center; 
   color: rgb(255, 115, 0);
