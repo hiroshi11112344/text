@@ -11,5 +11,7 @@ class Quiz < ApplicationRecord
   # Quiz_result中間テーブルの紐付け
   has_many :quiz_results
   has_many :users, through: :quiz_results
-  
+
+  validates :select_button_value, presence: true
+
 end

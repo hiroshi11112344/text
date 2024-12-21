@@ -1,26 +1,40 @@
 <body>
   <h1>クイズ一覧</h1>
+  <!-- セレクトボタンを追加 -->
+  <%= form_with url: "/quizzes/index", method: :post, local: true do %>
+    <div class="select_button">
+      <select name="select_option">
+        <% ["数学", "国語", "その他"].each do |option| %>
+          <option value="<%= option %>" <%= 'selected' if params[:select_option] == option %>><%= option %></option>
+        <% end %>
+      </select>
+      <%= submit_tag "送信"%>
+    </div>
+  <% end %>
+
   <div class="quiz_main">
+
    <div class="quiz_options_container">
       <% @quiz.each do |quiz|%>
         <div class="quiz_option_2">
-            <%=link_to(quiz.title, "/quizzes/#{quiz.id}show")%>
+          <%= link_to quiz.title, quiz_path(quiz.id) %>
             <p><%= quiz.question%></p>
         </div>
      <% end %>
    </div>
 
-   <!-- ページネーションのボタンを表示 -->
+     <!-- ページネーションのボタンを表示 -->
     <div class="quiz_button">
-      <!-- 戻る -->
-      <% if @prev_page%>
-        <%= link_to('戻る', "/quizzes/index?page=#{@prev_page}")%>  
+      <!-- 戻る ？以降は空の状態かセレクトが選択されたかのzでリンクを作っています-->
+      <% if @prev_page%> 
+        <%= link_to('戻る', "/quizzes/index?page=#{@prev_page}&select_option=#{params[:select_option]}")%>  
       <%end%>
+
 
       
       <!-- 次へボタン -->
       <% unless @is_last_page %>
-        <%= link_to('次へ', "/quizzes/index?page=#{@next_page}") %>
+        <%= link_to('次へ', "/quizzes/index?page=#{@next_page}&select_option=#{params[:select_option]}") %>
       <% end %>
     </div>
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_24_084156) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_08_043610) do
   create_table "answers", force: :cascade do |t|
     t.integer "quiz_id", null: false
     t.string "user_answer"
@@ -39,6 +39,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_24_084156) do
     t.string "title"
     t.datetime "started_at"
     t.float "total_time"
+    t.string "select_button_value"
     t.index ["user_id"], name: "index_quizzes_on_user_id"
   end
 
