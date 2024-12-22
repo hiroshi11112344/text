@@ -44,7 +44,7 @@ class QuizzesController < ApplicationController
     select_option = params[:select_option]
 
     # クイズの取得条件
-    if select_option.present?
+    if select_option.present? && select_option != "全体"
       # セレクトボタンの値に応じたクイズを取得　Quiz.whereを使用しカラムセレクトボタンと送信されたセレクトボタンの紐づけ
       @quiz = Quiz.where(select_button_value: select_option).offset((current_page - 1) * per_page).limit(per_page)
     else
@@ -53,7 +53,7 @@ class QuizzesController < ApplicationController
     end
     
     # クイズの総数を計算（フィルタリング後のデータ数を取得）total_quizzes = select_option.present? ?Quiz.where...ryの書き方もあったけどわからなくなるのでこちらを使用
-    if select_option.present?
+    if select_option.present? && select_option != "全体"
       total_quizzes = Quiz.where(select_button_value: select_option).count
     else
       total_quizzes = Quiz.count

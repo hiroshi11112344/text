@@ -36,6 +36,7 @@
   width: 100%;                 /* 親コンテナを幅いっぱいに */
   max-width: 1200px;           /* 最大幅を制限（必要なら調整） */
   margin: 0 auto;              /* コンテナ全体を中央に配置 */
+  gap: 20px; 
 }
 
 div.quiz_option_2 {
@@ -46,6 +47,10 @@ div.quiz_option_2 {
   width: calc(33.333% - 20px); /* 3つ並べるための幅調整 */
   box-sizing: border-box;      /* 枠線やパディングを含めたサイズ計算 */
   text-align: center;          /* テキストを中央に */
+  display: flex;              /* 子要素の配置にフレックスボックスを使用 */
+  flex-direction: column;     /* 縦方向に配置 */
+  justify-content: center;              /* 縦方向の中央揃え これいるかな？*/
+  height: 150px;                 /* 高さを固定する */
 
   transition: transform 0.3s ease, backgroud-color 0.3s ease/*easeはアニメーションスピードをスムーズにするやつ*/
 }

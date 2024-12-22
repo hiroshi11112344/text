@@ -4,11 +4,11 @@
   <%= form_with url: "/quizzes/index", method: :post, local: true do %>
     <div class="select_button">
       <select name="select_option">
-        <% ["数学", "国語", "その他"].each do |option| %>
+        <% ["全体", "数学", "国語", "その他"].each do |option| %>
           <option value="<%= option %>" <%= 'selected' if params[:select_option] == option %>><%= option %></option>
         <% end %>
       </select>
-      <%= submit_tag "送信"%>
+      <%= submit_tag "選択"%>
     </div>
   <% end %>
 
@@ -18,7 +18,6 @@
       <% @quiz.each do |quiz|%>
         <div class="quiz_option_2">
           <%= link_to quiz.title, quiz_path(quiz.id) %>
-            <p><%= quiz.question%></p>
         </div>
      <% end %>
    </div>
