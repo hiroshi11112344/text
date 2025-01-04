@@ -1,13 +1,27 @@
 class UserController < ApplicationController
-  
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(
+      name: params[:name],
+      email: params[:email]
+    )
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to("/quizzes/index")
+    else
+      render("user/new")
+    end
+  end
+
   def index
     @users = User.order(score: :desc) 
-    
-
   end
 
 
- #ログイン画面
+  #ログイン画面
   def login
   end
 
@@ -18,7 +32,7 @@ class UserController < ApplicationController
     if @user
       redirect_to("/quizzes/index")
     else
-      render("users/login")
+      render("user/login")
     end
   end
 
@@ -28,6 +42,4 @@ class UserController < ApplicationController
     redirect_to("/login")
   end
 
-  
-  
 end
